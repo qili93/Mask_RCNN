@@ -30,8 +30,6 @@ from distutils.version import LooseVersion
 assert LooseVersion(tf.__version__) >= LooseVersion("1.3")
 assert LooseVersion(keras.__version__) >= LooseVersion('2.0.8')
 
-from tensorflow_large_model_support import LMS
-
 ############################################################
 #  Utility Functions
 ############################################################
@@ -2373,7 +2371,7 @@ class MaskRCNN():
             initial_epoch=self.epoch,
             epochs=epochs,
             steps_per_epoch=self.config.STEPS_PER_EPOCH,
-            callbacks=lms_callback,
+            callbacks=callbacks,
             validation_data=val_generator,
             validation_steps=self.config.VALIDATION_STEPS,
             max_queue_size=100,
