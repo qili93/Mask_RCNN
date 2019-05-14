@@ -2362,7 +2362,12 @@ class MaskRCNN():
         else:
             workers = multiprocessing.cpu_count()
 	
+	# Enable LMS
+	from tensorflow_large_model_support import LMS
 	lms_callback = LMS()
+	lms_callback.batch_size = 4
+	callbacks.append(lms_callback)
+
         self.keras_model.fit_generator(
             train_generator,
             initial_epoch=self.epoch,
