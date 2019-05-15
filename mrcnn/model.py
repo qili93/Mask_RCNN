@@ -139,7 +139,7 @@ def conv_block(input_tensor, kernel_size, filters, stage, block,
         train_bn: Boolean. Train or freeze Batch Norm layers
     Note that from stage 3, the first conv layer at main path is with subsample=(2,2)
     And the shortcut should have subsample=(2,2) as well
-    """
+    """LMS
     nb_filter1, nb_filter2, nb_filter3 = filters
     conv_name_base = 'res' + str(stage) + block + '_branch'
     bn_name_base = 'bn' + str(stage) + block + '_branch'
@@ -2363,7 +2363,7 @@ class MaskRCNN():
 	# Enable LMS
 	from tensorflow_large_model_support import LMS
 	lms_callback = LMS()
-	lms_callback.batch_size = 4
+	lms_callback.batch_size = 8
 	callbacks.append(lms_callback)
 
         self.keras_model.fit_generator(
